@@ -11,9 +11,13 @@
     <!--include the listing of all the toys -->
     <div class="col-sm-offset-2 col-sm-8 text-center">
       <% @toys.each do |toy| %>
-        <%= toy.name %>
-        <%= toy.description %>
-        <%= toy.price %>
+      <!-- create cards -->
+      <ul>
+        <li><%= toy.name %></li>
+        <li><%= toy.description %></li>
+        <li><%= toy.price %></li>
+        <li><%= link_to 'Show', toy %></li>
+      </ul>
       <% end %>
     </div>
   </div>
