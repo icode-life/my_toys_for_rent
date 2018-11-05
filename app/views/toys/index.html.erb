@@ -1,0 +1,19 @@
+<!-- the search -->
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8 text-center">
+      <%= form_tag(toys_path, { method: :get, :class => 'form-inline'}) do %>
+        <%= text_field_tag(:search, params[:search]) %>
+        <%= submit_tag ("search") %>
+      <% end %>
+      <hr>
+    </div>
+
+    <!--include the listing of all the toys -->
+    <div class="col-sm-offset-2 col-sm-8 text-center">
+      <% @toys.each do |toy| %>
+        <%= toy.name %>
+        <%= toy.description %>
+        <%= toy.price %>
+      <% end %>
+    </div>
+  </div>
