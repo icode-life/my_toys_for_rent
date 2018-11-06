@@ -1,0 +1,33 @@
+
+<!-- the search -->
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-8 text-center">
+    <%= form_tag(toys_path, { method: :get, :class => 'form-inline'}) do %>
+    <%= text_field_tag(:search, params[:search]) %>
+    <%= submit_tag ("search") %>
+    <% end %>
+  </div>
+</div>
+
+<h2> <%= link_to "Add a Toy", new_toy_path(@user), class: "a-primary" %> </h2>
+
+<!-- creating the search with category -->
+
+
+<!--include the listing of all the toys -->
+<div class="container">
+  <div class="row">
+    <% @toys.each do |toy| %>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(toy.photo);">
+        <div class="card-description">
+          <h2><%= link_to toy.name, toy_path(toy) %></h2>
+          <p><%= toy.price %></p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
