@@ -11,27 +11,29 @@ class ToysController < ApplicationController
   end
 
 # Test comment
-  
-  def new
-    @user = User.find(params[:id])
-    @toy = Toy.new
-  end
+def nhu_method
+end
 
-  def create
+def new
+  @user = User.find(params[:id])
+  @toy = Toy.new
+end
 
-  end
+def create
 
-  def show
+end
 
-  end
+def show
 
-  def edit
-  end
+end
 
-  def destroy
-  end
+def edit
+end
 
-  private
+def destroy
+end
+
+private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_toy
