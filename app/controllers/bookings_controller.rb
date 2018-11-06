@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :find_booking
+  before_action :find_booking, except: [:index, :new, :create]
 
 
   def index
@@ -13,6 +13,7 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+    @toy = Toy.first
     authorize @booking
   end
 
