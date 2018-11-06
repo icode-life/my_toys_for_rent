@@ -40,9 +40,11 @@ def update
 end
 
 def destroy
-  @toy.owner = current_user
-  @toy.destroy
-  redirect_to toys_path
+  if @toy.destroy
+    redirect_to toys_path
+  else
+    "Something went wrong"
+  end
 end
 
 private
