@@ -14,13 +14,13 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @toy = Toy.find(params[:toy_id])
-    # authorize @booking
+    authorize @booking
   end
 
   def create
     @booking = Booking.new(booking_params)
     @toy = Toy.find(params[:toy_id])
-    @booking.toy = @toy # CHECK
+    @booking.toy = @toy
     @booking.user = current_user
     authorize @booking
     if @booking.save

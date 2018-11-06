@@ -1,6 +1,6 @@
 
-  <div class="row" >
-    <div class="col-sm-offset-2 col-sm-8 text-center">
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8">
       <h1>All the bookings:</h1>
       <hr>
     </div>
@@ -11,7 +11,7 @@
       <ol>
         <% @bookings.each do |b| %>
           <li>
-            <%= link_to b.toy.name, booking_path(b) %>
+            <%= link_to b.toy.name, toy_booking_path(b.toy, b) %>
           </li>
         <% end %>
       </ol>
@@ -20,9 +20,9 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-offset-2 col-sm-8 text-center">
+    <div class="col-sm-offset-2 col-sm-8">
       <p>
-        <%= link_to "Add new booking", new_booking_path, class: "btn btn-success" %>
+        <%= link_to "Book another toy", toys_path, class: "btn btn-success" %>
         <%= link_to "All bookings", bookings_path, class: "btn btn-primary" %>
       </p>
     </div>
