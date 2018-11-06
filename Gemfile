@@ -5,6 +5,7 @@ gem 'bootsnap', require: false
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
 gem 'puma'
+gem 'pundit'
 gem 'rails', '5.2.1'
 gem 'redis'
 gem 'devise'
@@ -16,6 +17,9 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'cloudinary'
+gem 'carrierwave', '~> 1.2'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -27,5 +31,4 @@ group :development, :test do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'dotenv-rails'
 end
