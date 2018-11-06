@@ -40,8 +40,9 @@ def update
 end
 
 def destroy
+  @toy.owner = current_user
   @toy.destroy
-  redirect_to = toys_path
+  redirect_to toys_path
 end
 
 private

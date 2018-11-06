@@ -28,3 +28,6 @@
 
 <%= link_to "Back to list", toys_path %>
 <%= link_to "Edit", edit_toy_path %>
+
+
+<%= link_to "Remove toy", toy_path(@toy), method: :delete, data:{confirm: "Are you sure?" } %>
