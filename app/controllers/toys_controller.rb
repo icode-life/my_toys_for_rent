@@ -10,17 +10,19 @@ class ToysController < ApplicationController
     end
   end
 
-# Test comment
-def nhu_method
-end
+  def new
+    # @user = User.find(params[:owner_id])
+    @toy = Toy.new
+  end
 
-def new
-  @user = User.find(params[:id])
-  @toy = Toy.new
-end
-
-def create
-
+  def create
+   @toy = Toy.new(toy_params)
+   @toy.owner = current_user
+   if @toy.save
+    redirect_to toy_path(@toy)
+  else
+    render :new
+  end
 end
 
 def show
@@ -28,9 +30,18 @@ def show
 end
 
 def edit
+  @toy.owner = current_user
+end
+
+def update
+  @toy.owner = current_user
+  @toy.update(toy_params)
+  redirect_to toy_path(@toy)
 end
 
 def destroy
+  @toy.destroy
+  redirect_to = toys_path
 end
 
 private
@@ -41,7 +52,7 @@ private
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def toys_params
-    params.require(:toys).permit(:name, :description, :category, :price, :owner_id)
+  def toy_params
+    params.require(:toy).permit(:name, :description, :category, :price, :photo)
   end
 end

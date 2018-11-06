@@ -20,3 +20,11 @@
   <%= @toy.category %>
 </p>
 
+<p>
+  <strong>Photo:</strong>
+  <%= cl_image_tag @toy.photo, width: 400, height: 300, crop: :fill %>
+</p>
+
+
+<%= link_to "Back to list", toys_path %>
+<%= link_to "Edit", edit_toy_path %>
