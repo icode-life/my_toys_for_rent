@@ -30,11 +30,9 @@ def show
 end
 
 def edit
-  @toy.owner = current_user
 end
 
 def update
-  @toy.owner = current_user
   @toy.update(toy_params)
   redirect_to toy_path(@toy)
 end
