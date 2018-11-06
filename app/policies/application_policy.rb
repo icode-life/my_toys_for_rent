@@ -6,11 +6,25 @@ class ApplicationPolicy
     @record = record
   end
 
+  class Scope
+    attr_reader :user, :scope
+
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
+
+    def resolve
+      scope.all
+    end
+  end
+
   def index?
     false
   end
 
   def show?
+    # scope.where(:id => record.id).exists?
     false
   end
 
@@ -32,18 +46,5 @@ class ApplicationPolicy
 
   def destroy?
     false
-  end
-
-  class Scope
-    attr_reader :user, :scope
-
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
-
-    def resolve
-      scope.all
-    end
   end
 end

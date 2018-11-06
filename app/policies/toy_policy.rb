@@ -1,24 +1,21 @@
 class ToyPolicy < ApplicationPolicy
   class Scope < Scope
-    def resolve
-      scope.all
-    end
   end
 
   def show?
-    true
+    #true  Everyone can see toys
   end
 
   def create?
-    return true
+    return true  #loged in user can create
   end
 
   def update?
-    user_or_admin?
+    user_or_admin?  #only user or admin can change
   end
 
   def destroy?
-    user_or_admin?
+    user_or_admin?  #same
   end
 
   private

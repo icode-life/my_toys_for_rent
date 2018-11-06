@@ -1,7 +1,11 @@
 class ToysController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_toy, only: [:show, :edit, :update, :destroy]
+  before_action :set_toy, only: [:edit, :update, :destroy]
+  skip_after_action :verify_authorized, only: :show
+  skip_after_action :verify_policy_scoped
 
+
+  #Everyone that comes on the website can search for items
   def index
     if params[:search].blank?
       @toys = Toy.all
@@ -10,46 +14,51 @@ class ToysController < ApplicationController
     end
   end
 
+  #Everyone can have access to details about a specific item
+  def show
+    @toy = Toy.find(params[:id])
+  end
+
+  #Only logged in users/admins can create new items
   def new
-    # @user = User.find(params[:owner_id])
     @toy = Toy.new
+    authorize @toy
   end
 
   def create
-   @toy = Toy.new(toy_params)
-   @toy.owner = current_user
-   if @toy.save
+    @toy = Toy.new(toy_params)
+    @toy.owner = current_user
+    authorize @toy
+    if @toy.save
+      redirect_to toy_path(@toy)
+    else
+      render :new
+    end
+  end
+
+  #Only the owner/admin can edit, update, or destroy an item
+  def edit
+  end
+
+  def update
+    @toy.update(toy_params)
     redirect_to toy_path(@toy)
-  else
-    render :new
   end
-end
 
-def show
-
-end
-
-def edit
-end
-
-def update
-  @toy.update(toy_params)
-  redirect_to toy_path(@toy)
-end
-
-def destroy
-  if @toy.destroy
-    redirect_to toys_path
-  else
-    "Something went wrong"
+  def destroy
+    if @toy.destroy
+      redirect_to toys_path
+    else
+      "Something went wrong"
+    end
   end
-end
 
 private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_toy
     @toy = Toy.find(params[:id])
+    authorize @toy
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
