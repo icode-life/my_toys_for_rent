@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2018_11_06_102215) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "owner_id"
+    t.string "photo"
     t.index ["owner_id"], name: "index_toys_on_owner_id"
   end
 
