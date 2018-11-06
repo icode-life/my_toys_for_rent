@@ -1,32 +1,18 @@
-// Import page-specific CSS files here.
-@import "home";
-
-.container {
-  display: flex;
-  //justify-content: space-around;
-}
-
 .card {
-  height: 175px;
+  height: 100px;
+  margin: 20px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   background-size: cover !important;
   background-position: center;
   color: white;
   position: relative;
 }
-.card-user {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 40px;
-  border-radius: 50%;
+.a-primary {
+  color: white;
 }
-.card-category {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 15px;
-  text-transform: uppercase;
+.b-primary {
+  color: white;
+  font-size: 5px;
 }
 .card-description {
   position: absolute;
