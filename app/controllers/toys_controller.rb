@@ -10,7 +10,8 @@ class ToysController < ApplicationController
     end
   end
 
-
+# Test comment
+  
   def new
     @user = User.find(params[:id])
     @toy = Toy.new
