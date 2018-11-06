@@ -13,12 +13,15 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
-    @toy = Toy.first
-    authorize @booking
+    @toy = Toy.find(params[:toy_id])
+    # authorize @booking
   end
 
   def create
     @booking = Booking.new(booking_params)
+    @toy = Toy.find(params[:toy_id])
+    @booking.toy = @toy # CHECK
+    @booking.user = current_user
     authorize @booking
     if @booking.save
       redirect_to toys_path
@@ -56,9 +59,3 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:date_start, :date_end, :user_id, :toy_id)
   end
 end
-
-
-
-
-
-
