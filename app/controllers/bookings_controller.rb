@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :find_booking
+  before_action :find_booking, except: [:index, :new, :create]
 
 
   def index
