@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+      <p>
+        <strong>Detail:</strong>
+        <%= @toy.name %>
+      </p>
+      <p>
+        <strong>Price:</strong>
+        <%= @toy.price %>
+      </p>
+      <p>
+        <strong>Category:</strong>
+        <%= @toy.category %>
+      </p>
+    </div>
+    <div class="col-md-4">
+      <p>
+        <strong>starting on:</strong>
+        <%= @booking.date_start %>
+      </p>
+      <p>
+        <strong>due on:</strong>
+        <%= @booking.date_end %>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<p>
+  <strong>Photo:</strong>
+  <%= cl_image_tag @toy.photo, width: 400, height: 300, crop: :fill %>
+</p>
+
+<td><%= link_to "Back to list", toys_path %></td>
+
+<td>
+  <% if policy(@toy).edit? %>
+    <%= link_to "Edit", edit_toy_path %>
+  <% end %>
+</td>
+
+<td>
+<% if policy(@toy).destroy? %>
+  <%= link_to "Remove", toy_path(@toy), method: :delete, data:{confirm: "Are you sure?" } %>
+<% end  %>
+</td>
