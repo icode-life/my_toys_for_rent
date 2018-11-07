@@ -11,6 +11,7 @@ class ToyPolicy < ApplicationPolicy
   end
 
   def update?
+    # raise
     user_or_admin?  #only user or admin can change
   end
 
@@ -21,6 +22,6 @@ class ToyPolicy < ApplicationPolicy
   private
 
   def user_or_admin?
-    return record.user == user || user.admin
+    return record.owner == user || user.admin
   end
 end
