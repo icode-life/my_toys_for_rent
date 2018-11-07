@@ -21,6 +21,6 @@ class ToyPolicy < ApplicationPolicy
   private
 
   def user_or_admin?
-    return record.user == user || user.admin
+    return record.owner == user || user.admin
   end
 end
