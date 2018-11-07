@@ -30,6 +30,7 @@ class ToysController < ApplicationController
     @toy = Toy.new(toy_params)
     @toy.owner = current_user
     authorize @toy
+    # raise
     if @toy.save
       redirect_to toy_path(@toy)
     else

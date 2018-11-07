@@ -1,5 +1,4 @@
 class BookingsController < ApplicationController
-
   before_action :find_booking, only: [:show, :edit, :update, :destroy]
   after_action :verify_policy_scoped, only: :index
 
