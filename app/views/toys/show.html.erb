@@ -29,7 +29,7 @@ raise
 
 <td>
   <% if policy(@toy).edit? %>
-    <%= link_to "Edit", edit_toy_path %>
+    <%= link_to "Edit", edit_toy_path(@toy) %>
   <% end %>
 </td>
 
