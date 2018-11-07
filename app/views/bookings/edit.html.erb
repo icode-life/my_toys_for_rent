@@ -1,18 +1,40 @@
 
   <div class="row" >
-    <div class="col-sm-offset-2 col-sm-8 text-center">
-      <h1>please edit the field as needed:</h1>
+    <div class="col-md-offset-2 col-md-8 text-center">
+      <h1>please edit the field(s) as needed:</h1>
       <hr>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-offset-1 col-sm-5">
-      <%= cl_image_tag @toy.photo, class: "image-size" %>
+    <div class="col-md-offset-1 col-md-3
+    text-center">
     </div>
-    <div class="col-sm-offset-1 col-sm-5 text-center">
-      <p>
-        <%= link_to "update booking", toy_booking_path, class: "btn btn-success" %>
+    <div class="col-md-offset-2 col-md-6">
+      <fieldset>
+        <legend> Your renting period </legend>
+      <%= simple_form_for [@toy, @booking] do |f| %>
+        <div class="col-md-6 text-center">
+        <%= f.input :date_start %>
+        </div>
+        <div class="col-md-6 text-center">
+        <%= f.input :date_end %>
+        <hr>
+        <%= f.button :submit, class: "btn btn-success" %>
+      </div>
+      <% end %>
+      </fieldset>
+
+    </div>
+  </div>
+
+
+
+
+
+
+      <div class="col-md-offset-2 col-md-2">
+        <hr>
+       <p>
         <%= link_to "Back to Bookings", bookings_path, class: "btn btn-primary" %>
       </p>
-    </div>
-
+      </div>

@@ -25,4 +25,6 @@ b1 = Booking.create(date_start: Date.new(2001,2,3), date_end: Date.new(2001,2,5)
 b1.save
 
 b2 = Booking.create(date_start: Date.new(2002,3,4), date_end: Date.new(2003,5,5), user_id: 2, toy_id: 2)
-b1.save
+b2.save
+
+
