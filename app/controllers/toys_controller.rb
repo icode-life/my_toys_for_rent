@@ -8,16 +8,19 @@ class ToysController < ApplicationController
     else
       @toys = Toy.where("name ilike '%#{params[:search]}%'")
     end
+    @toys = policy_scope(Toy)
   end
 
   def new
     # @user = User.find(params[:owner_id])
     @toy = Toy.new
+    authorize @toy
   end
 
   def create
    @toy = Toy.new(toy_params)
    @toy.owner = current_user
+   authorize @toy
    if @toy.save
     redirect_to toy_path(@toy)
   else
@@ -26,15 +29,12 @@ class ToysController < ApplicationController
 end
 
 def show
-
 end
 
 def edit
-  @toy.owner = current_user
 end
 
 def update
-  @toy.owner = current_user
   @toy.update(toy_params)
   redirect_to toy_path(@toy)
 end
@@ -52,6 +52,7 @@ private
   # Use callbacks to share common setup or constraints between actions.
   def set_toy
     @toy = Toy.find(params[:id])
+    authorize @toy
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
