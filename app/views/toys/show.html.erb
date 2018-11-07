@@ -28,13 +28,13 @@
 <td><%= link_to "Back to list", toys_path %></td>
 
 <td>
-  <% if policy(toy).edit? %>
+  <% if policy(@toy).edit? %>
     <%= link_to "Edit", edit_toy_path %>
   <% end %>
 </td>
 
 <td>
-<% if policy(toy).destroy? %>
+<% if policy(@toy).destroy? %>
   <%= link_to "Remove", toy_path(@toy), method: :delete, data:{confirm: "Are you sure?" } %>
 <% end  %>
 </td>

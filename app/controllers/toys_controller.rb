@@ -5,7 +5,7 @@ class ToysController < ApplicationController
   skip_after_action :verify_policy_scoped
 
 
-  #Everyone that comes on the website can search for items
+  # Everyone that comes on the website can search for items
   def index
     if params[:search].blank?
       @toys = Toy.all
@@ -14,12 +14,12 @@ class ToysController < ApplicationController
     end
   end
 
-  #Everyone can have access to details about a specific item
+  # Everyone can have access to details about a specific item
   def show
     @toy = Toy.find(params[:id])
   end
 
-  #Only logged in users/admins can create new items
+  # Only logged in users/admins can create new items
   def new
     @toy = Toy.new
     authorize @toy
@@ -32,11 +32,12 @@ class ToysController < ApplicationController
     if @toy.save
       redirect_to toy_path(@toy)
     else
-      render :new
+      redirect_to root_path
+      #render :new
     end
   end
 
-  #Only the owner/admin can edit, update, or destroy an item
+  # Only the owner/admin can edit, update, or destroy an item
   def edit
   end
 

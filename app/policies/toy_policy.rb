@@ -3,7 +3,7 @@ class ToyPolicy < ApplicationPolicy
   end
 
   def show?
-    #true  Everyone can see toys
+    true  #Everyone can see toys
   end
 
   def create?
