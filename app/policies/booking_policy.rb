@@ -11,6 +11,8 @@ class BookingPolicy < ApplicationPolicy
 
   def show?
     user_or_admin?
+    # scope.where(:id => record.id).exists?
+    # return true
   end
 
   def create?

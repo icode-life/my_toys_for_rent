@@ -11,6 +11,7 @@ class ToyPolicy < ApplicationPolicy
   end
 
   def update?
+    # raise
     user_or_admin?  #only user or admin can change
   end
 

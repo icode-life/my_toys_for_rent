@@ -19,10 +19,10 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @toy = Toy.find(params[:toy_id])
+    # raise
     @booking.toy = @toy
     @booking.user = current_user
     authorize @booking
-    raise
     if @booking.save
       redirect_to bookings_path
     else
