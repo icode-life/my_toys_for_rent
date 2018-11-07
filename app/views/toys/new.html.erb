@@ -1,4 +1,5 @@
 <div class="toy-form">
+ <div class="col-xs-12 col-sm-4">
   <%= simple_form_for (@toy) do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
@@ -14,5 +15,6 @@
     <%= f.input :photo_cache, as: :hidden %>
     <%= f.button :submit, class: 'btn btn-primary' %>
     <% end  %>
+  </div>
 </div>
 

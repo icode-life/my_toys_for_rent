@@ -7,6 +7,7 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @toy = Toy.find(params[:toy_id])
   end
 
   def new
@@ -31,13 +32,17 @@ class BookingsController < ApplicationController
 
 
   def edit
+    @toy = Toy.find(params[:toy_id])
   end
 
   def update
     # view action: make a display of the updated item (show)
     # display the editable item fields
-    @booking.update(booking_params)
-    redirect_to booking_path(@booking)
+    if @booking.update(booking_params)
+      redirect_to bookings_path
+    else
+      render :edit
+    end
   end
 
   def destroy
