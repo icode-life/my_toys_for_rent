@@ -29,7 +29,6 @@ class ToysController < ApplicationController
   def create
     @toy = Toy.new(toy_params)
     @toy.owner = current_user
-    # raise
     authorize @toy
     if @toy.save
       redirect_to toy_path(@toy)
