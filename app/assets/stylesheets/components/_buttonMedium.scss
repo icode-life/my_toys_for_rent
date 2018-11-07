@@ -1,0 +1,16 @@
+.buttonMedium {
+  color: rgba(100, 100, 100, 0.3);
+  background-color: white;
+  border-radius: 50px;
+  padding: 10px, 15px;
+  text-decoration: none;
+  font-weight: lighter;
+  border: 1px solid rgb(100,100,100);
+  opacity: 0,6;
+  font-size: 20px;
+  padding: 10px 25px;
+}
+
+.buttonMedium hover {
+  opacity: 1;
+}
