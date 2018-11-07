@@ -23,6 +23,7 @@ class BookingsController < ApplicationController
     @booking.toy = @toy
     @booking.user = current_user
     authorize @booking
+    raise
     if @booking.save
       redirect_to toys_path
     else
