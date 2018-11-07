@@ -10,14 +10,30 @@
     <div class="col-sm-offset-2 col-sm-8">
       <ol>
         <% @bookings.each do |b| %>
+          <li><%= link_to b.toy.name, booking_path(b) %></li>
           <li>
             <%= link_to b.toy.name, toy_booking_path(b.toy, b) %>
+            <% if policy(booking).create? %>
+              <%= link_to "Add new booking", new_booking_path, class: "btn btn-success" %>
+            <% end %>
+          </li>
+          <li>
+            <% if policy(booking).edit? %>
+              <%= link_to "Edit", edit_booking_path(booking), class: "btn btn-success" %>
+            <% end %>
+          </li>
+          <li>
+            <% if policy(booking).destroy? %>
+              <%= link_to "Cancel", booking_path(booking), method: :delete, data:{confirm: "Are you sure?" } %>
+            <% end %>
+            <%= link_to "All bookings", bookings_path, class: "btn btn-primary" %>
           </li>
         <% end %>
       </ol>
       <hr>
     </div>
   </div>
+
 
   <div class="row">
     <div class="col-sm-offset-2 col-sm-8">
@@ -27,4 +43,5 @@
       </p>
     </div>
   </div>
+
 
