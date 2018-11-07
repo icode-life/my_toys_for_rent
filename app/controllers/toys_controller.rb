@@ -12,6 +12,7 @@ class ToysController < ApplicationController
     else
       @toys = Toy.where("name ilike '%#{params[:search]}%'")
     end
+    @toys = policy_scope(Toy)
   end
 
   # Everyone can have access to details about a specific item
@@ -26,20 +27,19 @@ class ToysController < ApplicationController
   end
 
   def create
-    @toy = Toy.new(toy_params)
-    @toy.owner = current_user
-    authorize @toy
-    if @toy.save
-      redirect_to toy_path(@toy)
-    else
-      redirect_to root_path
-      #render :new
-    end
+   @toy = Toy.new(toy_params)
+   @toy.owner = current_user
+   authorize @toy
+   if @toy.save
+    redirect_to toy_path(@toy)
+  else
+    render :new
   end
 
   # Only the owner/admin can edit, update, or destroy an item
   def edit
   end
+
 
   def update
     @toy.update(toy_params)
