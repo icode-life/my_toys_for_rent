@@ -3,7 +3,7 @@ class Toy < ApplicationRecord
   has_many :bookings
   validates :name, presence: true
   validates :description, presence: true
-  validates :category, presence:true, inclusion: { in: ["princess","adventure","love","wood"]}
+  validates :category, presence:true, inclusion: { in: ["For Babies","Construction Games","Babydoll","Heroes","Puzzle"]}
   validates :price, presence: true
   validates :photo, presence: true
   mount_uploader :photo, PhotoUploader

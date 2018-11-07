@@ -25,16 +25,18 @@ raise
   <%= cl_image_tag @toy.photo, width: 400, height: 300, crop: :fill %>
 </p>
 
-<td><%= link_to "Back to list", toys_path %></td>
+<td><%= link_to "Back to list", toys_path, class: "buttonMedium" %></td>
 
 <td>
   <% if policy(@toy).edit? %>
-    <%= link_to "Edit", edit_toy_path %>
+  <%= link_to "Edit", edit_toy_path %>
   <% end %>
 </td>
 
 <td>
-<% if policy(@toy).destroy? %>
+  <% if policy(@toy).destroy? %>
   <%= link_to "Remove", toy_path(@toy), method: :delete, data:{confirm: "Are you sure?" } %>
-<% end  %>
+  <% end %>
 </td>
+
+<%= link_to "Book this toy !", new_toy_booking_path(@toy), class: "buttonMedium" %>
