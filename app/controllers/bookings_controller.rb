@@ -1,14 +1,13 @@
 class BookingsController < ApplicationController
-  before_action :find_booking, except: [:index, :new, :create]
-
+  before_action :find_booking, only: [:show, :edit, :update, :destroy]
+  after_action :verify_policy_scoped, only: :index
 
   def index
-    if params[:search].blank?
-      @bookings = Booking.all
-    else
-      @bookings = Booking.where("name ilike '%#{params[:search]}%'")
-    end
-    @bookings = policy_scope(Booking)
+    @bookings = policy_scope(Booking).order(created_at: :desc)
+  end
+
+  def show
+    @booking = policy_scope(Booking).find(params[:id])
   end
 
   def new
@@ -20,18 +19,16 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @toy = Toy.find(params[:toy_id])
-    @booking.toy_id = @toy
-    @booking.user_id = current_user.id
+    @booking.toy = @toy
+    @booking.user = current_user
     authorize @booking
     if @booking.save
-      redirect_to toys_path
+      redirect_to bookings_path
     else
       render :new
     end
   end
 
-  def show
-  end
 
   def edit
   end

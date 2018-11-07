@@ -1,13 +1,18 @@
 class BookingPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      if user.admin?
+        scope.all
+      else
+        scope.where(user: user)
+      end
     end
   end
 
-  def show?
-    true
-  end
+  # def show?
+  #  # scope.where(:id => record.id).exists?
+  #  return true
+  # end
 
   def create?
     return true
