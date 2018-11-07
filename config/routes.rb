@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     resources :bookings
   end
   get 'bookings', to: 'bookings#index', as: :bookings
+  resources :users, only: [:show]
 end
