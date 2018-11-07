@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :find_booking
+  before_action :find_booking, except: [:index, :new, :create]
 
 
   def index
@@ -13,12 +13,17 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+    @toy = Toy.find(params[:toy_id])
     authorize @booking
   end
 
   def create
     @booking = Booking.new(booking_params)
+    @toy = Toy.find(params[:toy_id])
+    @booking.toy = @toy
+    @booking.user = current_user
     authorize @booking
+    raise
     if @booking.save
       redirect_to toys_path
     else
@@ -55,9 +60,3 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:date_start, :date_end, :user_id, :toy_id)
   end
 end
-
-
-
-
-
-
