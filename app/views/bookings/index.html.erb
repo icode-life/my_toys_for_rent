@@ -6,31 +6,59 @@
     </div>
   </div>
 
+  <!-- here I want to have all my bookings (as the owner) -->
   <div class="row">
     <div class="col-sm-offset-2 col-sm-8">
+      <strong>The bookings for the toys I own:</strong>
       <ol>
         <% @bookings.each do |b| %>
-          <li><%= link_to b.toy.name, booking_path(b) %></li>
-          <li>
-            <%= link_to b.toy.name, toy_booking_path(b.toy, b) %>
-            <% if policy(booking).create? %>
-              <%= link_to "Add new booking", new_booking_path, class: "btn btn-success" %>
+
+          <!-- if current user is the owner of the toy -->
+          <% owner = b.toy.owner %>
+          <% if current_user == owner %>
+            <li>
+              <%= link_to b.toy.name, toy_booking_path(b.toy, b) %>
+            </li>
+            <% if policy(b).edit? %>
+                <%= link_to "Edit", edit_toy_booking_path(b.toy, b), class: "btn btn-success" %>
             <% end %>
-          </li>
-          <li>
-            <% if policy(booking).edit? %>
-              <%= link_to "Edit", edit_booking_path(booking), class: "btn btn-success" %>
+            <% if policy(b).destroy? %>
+              <%= link_to "Delete", toy_booking_path(b.toy, b), method: :delete, data:{confirm: "Are you sure?" }, class: "btn btn-danger" %>
             <% end %>
-          </li>
-          <li>
-            <% if policy(booking).destroy? %>
-              <%= link_to "Cancel", booking_path(booking), method: :delete, data:{confirm: "Are you sure?" } %>
-            <% end %>
-            <%= link_to "All bookings", bookings_path, class: "btn btn-primary" %>
-          </li>
+          <% end %>
+
         <% end %>
       </ol>
       <hr>
+    </div>
+  </div>
+
+  <!-- here I want to have all my bookings (as a borrower) -->
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8">
+
+      <strong>My bookings:</strong>
+      <ol>
+        <% @bookings.each do |b| %>
+
+          <!-- if current user is the one who made a booking -->
+          <% borrower = b.user %>
+          <% if current_user == borrower %>
+            <li>
+              <%= link_to b.toy.name, toy_booking_path(b.toy, b) %>
+            </li>
+            <% if policy(b).edit? %>
+                <%= link_to "Edit", edit_toy_booking_path(b.toy, b), class: "btn btn-success" %>
+            <% end %>
+              <% if policy(b).destroy? %>
+                <%= link_to "Delete", toy_booking_path(b.toy, b), method: :delete, data:{confirm: "Are you sure?" }, class: "btn btn-danger" %>
+              <% end %>
+          <% end %>
+
+        <% end %>
+      </ol>
+      <hr>
+
     </div>
   </div>
 

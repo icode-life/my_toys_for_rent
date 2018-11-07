@@ -7,7 +7,6 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @booking = policy_scope(Booking).find(params[:id])
   end
 
   def new
@@ -19,7 +18,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @toy = Toy.find(params[:toy_id])
-    raise
+    # raise
     @booking.toy = @toy
     @booking.user = current_user
     authorize @booking
