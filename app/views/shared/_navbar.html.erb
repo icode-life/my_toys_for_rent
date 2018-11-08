@@ -10,8 +10,8 @@
 
       <!-- Links when logged in -->
       <% if user_signed_in? %>
-      <%= link_to "New arrivals", "localhost:3000/toys/1", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Top 5 rentings", "localhost:3000/toys/1", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "New arrivals", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Top 5 rentings", "#", class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Profile", user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-wagon-item navbar-wagon-link" %>
 
@@ -23,10 +23,20 @@
       </div>
     </div>
 
+    <!--My TEST -->
+    <div class="dropdown">
+     <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", data: { toggle: "dropdown"} %>
+
+     <ul class="dropdown-menu">
+      <li><a href="#">Profile</a></li>
+      <li><a href="#">Another action</a></li>
+      <li><a href="#">Something else here</a></li>
+    </div>
     <!-- Avatar with dropdown menu -->
     <div class="navbar-wagon-item">
       <div class="dropdown">
         <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <li>
             <%= link_to user_path(current_user) do %>
