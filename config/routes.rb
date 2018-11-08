@@ -7,5 +7,5 @@ Rails.application.routes.draw do
     resources :reviews
   end
   get 'bookings', to: 'bookings#index', as: :bookings
-  resources :users, only: [:show, :edit]
+  resources :users, only: [:show]
 end
