@@ -9,7 +9,7 @@
   <strong>Detail:</strong>
   <%= @toy.description %>
 </p>
-raise
+
 <p>
   <strong>Price:</strong>
   <%= @toy.price %>
@@ -29,7 +29,7 @@ raise
 
 <td>
   <% if policy(@toy).edit? %>
-    <%= link_to "Edit", edit_toy_path(@toy) %>
+  <%= link_to "Edit", edit_toy_path(@toy) %>
   <% end %>
 </td>
 
@@ -40,3 +40,23 @@ raise
 </td>
 
 <%= link_to "Book this toy !", new_toy_booking_path(@toy), class: "buttonMedium" %>
+
+<%= link_to "Add a rating !", new_toy_review_path(@toy), class: "buttonMedium" %>
+
+<div class="list-group">
+  <p> List of all the ratings: </p>
+  <% @toy.reviews.each do |review| %>
+  <small>
+    <% count = 0 %>
+    <% 5.times do %>
+    <% if review.rating > count %>
+    <i class="fas fa-star"></i>
+    <% else %>
+    <i class="far fa-star"></i>
+    <% end %>
+    <% count += 1 %>
+    <% end %>
+  </small>
+  <p> <%= review.content %> </p>
+  <% end %>
+</div>
