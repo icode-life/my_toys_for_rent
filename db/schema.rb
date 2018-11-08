@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2018_11_08_095027) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin", default: false, null: false
+    t.boolean "admin"
     t.string "address"
     t.string "f_name"
     t.string "l_name"
