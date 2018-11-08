@@ -17,6 +17,14 @@
             <%= f.input :password_confirmation,
                         required: true,
                         input_html: { autocomplete: "new-password" } %>
+            <%= f.input :f_name, :label => "First name",
+                        input_html: { autocomplete: "f_name" } %>
+            <%= f.input :l_name, :label => "Last name",
+                        input_html: { autocomplete: "l_name" } %>
+            <%= f.input :address,
+                        input_html: { autocomplete: "address" } %>
+            <%= f.input :photo, :label => "Profile picture" %>
+            <%= f.input :photo_cache, as: :hidden %>
           </div>
 
   <div class="form-actions">

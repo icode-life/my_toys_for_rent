@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :toys, foreign_key: :owner_id
   has_many :bookings
+  mount_uploader :photo, PhotoUploader
 end
