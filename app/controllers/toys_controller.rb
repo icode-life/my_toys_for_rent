@@ -10,9 +10,14 @@ class ToysController < ApplicationController
     if params[:search].blank?
       @toys = Toy.all
     else
-      @toys = Toy.where("name ilike '%#{params[:search]}%'")
+      sql_query = "name ILIKE :query OR description ILIKE :query"
+      @toys = Toy.where(sql_query, query: '%#{params[:query]}%')
     end
-    # @toys = policy_scope(Toy)
+
+    #add the filter for available dates for booking
+
+    #add a filter for desired locations to pick up the toy
+
   end
 
   # Everyone can have access to details about a specific item
