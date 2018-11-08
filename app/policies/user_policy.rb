@@ -6,8 +6,8 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    true
-    # user_or_admin?  #only user or admin can change
+    # true
+    user_or_admin?  #only user or admin can view
   end
 
   def update?
@@ -17,6 +17,6 @@ class UserPolicy < ApplicationPolicy
   private
 
   def user_or_admin?
-    return record.user == user || user.admin
+    return record == user || user.admin
   end
 end
