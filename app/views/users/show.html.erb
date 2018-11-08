@@ -1,4 +1,3 @@
-<!-- col-sm-offset-2 col-sm-4 text-center -->
 <!-- TEST - People card with Tabs -->
 <div class="container">
   <div class="row">
@@ -34,52 +33,56 @@
             </div>
         </div>
 
-            <div class="well">
+        <div class="well">
           <div class="tab-content">
             <div class="tab-pane fade in active" id="tab1">
               <h4>My bookings:</h4>
+
               <ol>
-                <% @bookings.each do |b| %>
-
-                  <!-- if current user is the one who made a booking -->
-                  <% borrower = b.user %>
-                  <% if current_user == borrower %>
+                <!-- iterate thru all the bookings of the current user -->
+                <% @user.bookings.each do |booking| %>
                     <li>
-                      <%= link_to b.toy.name, toy_booking_path(b.toy, b) %>
-                    </li>
-                    <% if policy(b).edit? %>
-                        <%= link_to "Edit", edit_toy_booking_path(b.toy, b), class: "btn btn-success" %>
-                    <% end %>
-                      <% if policy(b).destroy? %>
-                        <%= link_to "Delete", toy_booking_path(b.toy, b), method: :delete, data:{confirm: "Are you sure?" }, class: "btn btn-danger" %>
-                      <% end %>
-                  <% end %>
+                      <%= cl_image_tag booking.toy.photo, width: 50, height: 50, crop: :fill %>
+                      (<%= link_to booking.toy.name, toy_path(booking.toy) %>) ---
+                      Booked from: <%= booking.date_start %>  till:  <%= booking.date_end %>
 
+                      <% if policy(booking).edit? %>
+                          <%= link_to "Edit", edit_toy_booking_path(booking.toy, booking) %>
+                      <% end %>
+                      <% if policy(booking).destroy? %>
+                          <%= link_to "Delete", toy_booking_path(booking.toy, booking), method: :delete, data:{confirm: "Are you sure?" } %>
+                      <% end %>
+
+                    </li>
                 <% end %>
               </ol>
-
 
             </div>
             <div class="tab-pane fade in" id="tab2">
               <h4>Bookings for the toys I own:</h4>
               <%  %>
               <ol>
-                <% @bookings.each do |b| %>
-                  <!-- if current user is the owner of the toy -->
-                  <% owner = b.toy.owner %>
-
-                  <% if current_user == owner %>
+                <!-- iterate thru all the toys of the current user -->
+                <% @user.toys.each do |toy| %>
                     <li>
-                      <%= link_to b.toy.name, toy_booking_path(b.toy, b) %>
-                    </li>
-                    <% if policy(b).edit? %>
-                        <%= link_to "Edit", edit_toy_booking_path(b.toy, b), class: "btn btn-success" %>
-                    <% end %>
-                    <% if policy(b).destroy? %>
-                      <%= link_to "Delete", toy_booking_path(b.toy, b), method: :delete, data:{confirm: "Are you sure?" }, class: "btn btn-danger" %>
-                    <% end %>
-                  <% end %>
+                      <%= cl_image_tag toy.photo, width: 50, height: 50, crop: :fill %>
+                      (<%= link_to toy.name, toy_path(toy) %>)
 
+                      <ul>
+                        <!-- check if the toy has any bookings? -->
+                        <% if toy.bookings.count > 0 %>
+                            <% toy.bookings.each do |booking| %>
+                              <li>
+                                Booked by: <%= booking.user.f_name %>
+                                -- from: <%= booking.date_start %>  till:  <%= booking.date_end %>
+                              </li>
+                            <% end %>
+                        <% else %>
+                              <li>No bookings</li>
+                        <% end %>
+                      </ul>
+
+                    </li>
                 <% end %>
               </ol>
 
