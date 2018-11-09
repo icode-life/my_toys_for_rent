@@ -15,9 +15,13 @@
   <%= render 'shared/flashes' %>
 <!--     <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p> -->
-  <%= yield %>
-  <%= javascript_include_tag 'application' %>
-  <%= javascript_pack_tag 'application' %>
+
+  <div class="body">
+    <%= yield %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
+  </div>
+
   <div>
     <%= render 'shared/footer' %>
   </div>
@@ -26,7 +30,7 @@
     /* When the user clicks on the button,
     toggle between hiding and showing the dropdown content */
     function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("open");
+      document.getElementById("myDropdown").classList.toggle("open");
     }
 
     // Close the dropdown if the user clicks outside of it

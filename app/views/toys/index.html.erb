@@ -1,17 +1,19 @@
 <!--Banner with Search -->
-<div class="hero-image">
-  <div class="hero-text">
-    <h1> PLAY </h1>
-    <p> Rent a Toy Today - Save Money Tomorrow </p>
-    <!-- the search -->
-    <div class="Search-Home">
-      <div class="row">
-        <div class="col-sm-offset-2 col-sm-8 text-center">
-          <%= form_tag(toys_path, { method: :get, :class => 'form-inline'}) do %>
-          <%= text_field_tag(:search, params[:search]) %>
-          <p> </p>
-          <%= submit_tag ("search"), class: "buttonMedium" %>
-          <% end %>
+<div class="banner">
+  <div class="hero-image">
+    <div class="hero-text">
+      <h1> PLAY </h1>
+      <p> Rent a Toy Today - Save Money Tomorrow </p>
+      <!-- the search -->
+      <div class="Search-Home">
+        <div class="row">
+          <div class="col-sm-offset-2 col-sm-8 text-center">
+            <%= form_tag(toys_path, { method: :get, :class => 'form-inline'}) do %>
+            <%= text_field_tag(:search, params[:search]) %>
+            <p> </p>
+            <%= submit_tag ("search"), class: "buttonMedium" %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
