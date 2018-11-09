@@ -1,41 +1,57 @@
 <!--Banner with Search -->
-<div class="banner">
-  <div class="hero-image">
-    <div class="hero-text">
-      <h1> PLAY </h1>
-      <p> Rent a Toy Today - Save Money Tomorrow </p>
-      <!-- the search -->
-      <div class="Search-Home">
-        <div class="row">
-          <div class="col-sm-offset-2 col-sm-8 text-center">
-            <%= form_tag(toys_path, { method: :get, :class => 'form-inline'}) do %>
-            <%= text_field_tag(:search, params[:search]) %>
-            <p> </p>
-            <%= submit_tag ("search"), class: "buttonMedium" %>
-            <% end %>
-          </div>
+
+
+<div class="hero-image">
+  <div class="hero-text">
+    <h1> PLAY </h1>
+    <p> Rent a Toy Today - Save Money Tomorrow </p>
+    <!-- the search -->
+    <div class="Search-Home">
+      <div class="row">
+        <div class="col-sm-offset-2 col-sm-8 text-center">
+          <%= form_tag(toys_path, { method: :get, :class => 'form-inline'}) do %>
+          <%= text_field_tag(:search, params[:search]) %>
+          <p> </p>
+          <%= submit_tag ("search"), class: "ButtonPinkNoFill" %>
+          <% end %>
+
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
-<!--include the listing of all the toys -->
 <div class="container">
   <div class="row">
-    <h2> My searched toys: </h2>
     <% @toys.each do |toy| %>
-    <div class="col-xs-12 col-sm-4">
-      <div class="card", style="linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)">
-        <%= cl_image_tag toy.photo, height: 180 %>
-        <div class="card-description">
-          <h2><%= link_to toy.name, toy_path(toy) %></h2>
-          <p><%= toy.price %> EUR </p>
+    <div class="col-xs-12 col-md-4 children-flex">
+      <div class="flexbox">
+        <div class="example-2 cardindex">
+          <div class="wrapper" style="background-image: url('<%= toy.photo %>')">
+            <div class="header">
+              <ul class="menu-content">
+                <li>
+                  <a href="#" class="fa fa-bookmark-o"></a>
+                </li>
+                <li><a href="#" class="fa fa-heart-o"><span>3</span></a></li>
+                <li><a href="#" class="fa fa-comment-o"><span>3</span></a></li>
+              </ul>
+            </div>
+            <div class="data" style="">
+              <div class="content">
+                <span class="author"><%= link_to (toy.name), toy_path(toy) %></span>
+                <h1 class="title"><a href="#"><%= toy.price %> € </a></h1>
+                <p class="text"><%= toy.description %></p>
+                <p></p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <% end %>
   </div>
 </div>
+
+
 
