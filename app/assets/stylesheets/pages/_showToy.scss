@@ -9,6 +9,10 @@
 .ToyPhoto {
   grid-row: 1/span 2;
   grid-column: 1/span 2;
+  border-radius: 20%;
+  height: 300px;
+  width: 400px;
+  background-size: cover;
 }
 
 .ToyInfo {

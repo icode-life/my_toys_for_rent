@@ -12,9 +12,7 @@
       <p> <strong>Category:</strong> <%= @toy.category %> </p>
     </div>
 
-    <div class="ToyPhoto">
-      <p> <%= cl_image_tag @toy.photo, width: 400, height: 300, crop: :fill %>
-      </p>
+    <div class="ToyPhoto" style="background-image: url('<%= @toy.photo %>');">
     </div>
 
     <div class="ToyLink">
