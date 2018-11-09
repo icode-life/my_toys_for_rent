@@ -22,13 +22,6 @@
             <%= link_to "Back to list", toys_path %>
           </div>
 
-          <div class="buttonMedium">
-            <%= link_to "Edit", edit_toy_path(@toy) %>
-          </div>
-
-          <div class="buttonMedium">
-            <%= link_to "Remove", toy_path(@toy), method: :delete, data:{confirm: "Are you sure?" } %>
-          </div>
 
           <div class="buttonMedium">
             <%= link_to "Book this toy !", new_toy_booking_path(@toy) %>
@@ -37,6 +30,19 @@
           <div class="buttonMedium">
             <%= link_to "Add a review !", new_toy_review_path(@toy) %>
           </div>
+
+          <% if policy(@toy).edit? %>
+          <div class="buttonMedium">
+            <%= link_to "Edit", edit_toy_path(@toy) %>
+
+          </div>
+
+          <div class="buttonMedium">
+
+            <%= link_to "Remove", toy_path(@toy), method: :delete, data:{confirm: "Are you sure?" } %>
+
+          </div>
+          <% end %>
         </ul>
       </p>
     </div>

@@ -11,39 +11,20 @@
   <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
 </head>
 <body>
+
   <%= render 'shared/navbar' %>
   <%= render 'shared/flashes' %>
 <!--     <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p> -->
-  <%= yield %>
-  <%= javascript_include_tag 'application' %>
-  <%= javascript_pack_tag 'application' %>
+
+  <div class="body">
+    <%= yield %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
+  </div>
+
   <div>
     <%= render 'shared/footer' %>
   </div>
-
-  <script>
-    /* When the user clicks on the button,
-    toggle between hiding and showing the dropdown content */
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("open");
-    }
-
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function(event) {
-      if (!event.target.matches('.dropbtn')) {
-
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('open')) {
-            openDropdown.classList.remove('open');
-          }
-        }
-      }
-    }
-  </script>
-
 </body>
 </html>
