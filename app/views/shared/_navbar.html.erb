@@ -1,41 +1,30 @@
   <div class="navbar-wagon">
     <!-- Logo -->
-    <a>
-      <%= link_to root_path, class: "navbar-wagon-brand" do %>
-      <%= image_tag "logo.png", height: 50 %>
-      <% end %>
-    </a>
+    <%= link_to root_path, class: "navbar-wagon-brand" do %>
+    <%= image_tag "logo.png", height: 50 %>
+    <% end %>
+
     <!-- Right Navigation -->
     <div class="navbar-wagon-right hidden-xs hidden-sm">
-
       <!-- Links when logged in -->
       <% if user_signed_in? %>
-      <%= link_to "New arrivals", "localhost:3000/toys/1", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Top 5 rentings", "localhost:3000/toys/1", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Profile", user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-wagon-item navbar-wagon-link" %>
 
-      <!--Add a Toy -->
-      <div class="Add a toy">
-        <% if policy(Toy).create? %>
-        <p> <%= link_to "Add a Toy", new_toy_path(@user), class: "buttonMedium" %> </p>
-        <% end %>
-      </div>
+      <% else %>
+      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <% end %>
     </div>
 
+
     <!-- Avatar with dropdown menu -->
+    <% if user_signed_in? %>
     <div class="navbar-wagon-item">
-      <div class="dropdown">
-        <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+      <%= link_to "Add a Toy", new_toy_path(@user), class: "ButtonPink" %>
+      <div class="dropdown" id="myDropdown">
+        <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", data: { toggle: "dropdown" }, "role" => "button", "aria-haspopup" => "true", "aria-expanded" => "false", "onclick" => "myFunction()" %>
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <li>
             <%= link_to user_path(current_user) do %>
             <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to "#" do %>
-            <i class="fa fa-cog"></i>  <%= t(".settings", default: "Settings") %>
             <% end %>
           </li>
           <li>
@@ -46,22 +35,19 @@
         </ul>
       </div>
     </div>
-    <% else %>
-    <!-- Login link (when logged out) -->
-    <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+
     <% end %>
-  </div>
 
-  <!-- Dropdown list appearing on mobile only -->
-  <div class="navbar-wagon-item hidden-md hidden-lg">
-    <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">New arrivals</a></li>
-        <li><a href="#">Top 5 rentings</a></li>
-        <li><a href="#">Profile</a></li>
-      </ul>
+    <!-- Dropdown list appearing on mobile only -->
+    <div class="navbar-wagon-item hidden-md hidden-lg">
+      <div class="dropdown">
+        <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li><a href="#">New arrivals</a></li>
+          <li><a href="#">Top 5 rentings</a></li>
+          <li><a href="#">Profile</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</div>
 
+  </div>

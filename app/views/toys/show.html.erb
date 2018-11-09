@@ -1,62 +1,68 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<p>
-  <strong>Name:</strong>
-  <%= @toy.name %>
-</p>
+  <div class="ToyInformations">
 
-<p>
-  <strong>Detail:</strong>
-  <%= @toy.description %>
-</p>
+    <div class="ToyInfo">
+      <p> <strong>Name:</strong> <%= @toy.name %> </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @toy.price %>
-</p>
+      <p> <strong>Detail:</strong> <%= @toy.description %> </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @toy.category %>
-</p>
+      <p> <strong>Price:</strong> <%= @toy.price %> </p>
 
-<p>
-  <strong>Photo:</strong>
-  <%= cl_image_tag @toy.photo, width: 400, height: 300, crop: :fill %>
-</p>
+      <p> <strong>Category:</strong> <%= @toy.category %> </p>
+    </div>
 
-<td><%= link_to "Back to list", toys_path, class: "buttonMedium" %></td>
+    <div class="ToyPhoto" style="background-image: url('<%= @toy.photo %>');">
+    </div>
 
-<td>
-  <% if policy(@toy).edit? %>
-  <%= link_to "Edit", edit_toy_path(@toy) %>
-  <% end %>
-</td>
+    <div class="ToyLink">
+      <p>
+        <ul>
+          <div class="buttonMedium">
+            <%= link_to "Back to list", toys_path %>
+          </div>
 
-<td>
-  <% if policy(@toy).destroy? %>
-  <%= link_to "Remove", toy_path(@toy), method: :delete, data:{confirm: "Are you sure?" } %>
-  <% end %>
-</td>
+          <div class="buttonMedium">
+            <%= link_to "Edit", edit_toy_path(@toy) %>
+          </div>
 
-<%= link_to "Book this toy !", new_toy_booking_path(@toy), class: "buttonMedium" %>
+          <div class="buttonMedium">
+            <%= link_to "Remove", toy_path(@toy), method: :delete, data:{confirm: "Are you sure?" } %>
+          </div>
 
-<%= link_to "Add a rating !", new_toy_review_path(@toy), class: "buttonMedium" %>
+          <div class="buttonMedium">
+            <%= link_to "Book this toy !", new_toy_booking_path(@toy) %>
+          </div>
 
-<div class="list-group">
-  <p> List of all the ratings: </p>
-  <% @toy.reviews.each do |review| %>
-  <small>
-    <% count = 0 %>
-    <% 5.times do %>
-    <% if review.rating > count %>
-    <i class="fas fa-star"></i>
-    <% else %>
-    <i class="far fa-star"></i>
-    <% end %>
-    <% count += 1 %>
-    <% end %>
-  </small>
-  <p> <%= review.content %> </p>
-  <% end %>
+          <div class="buttonMedium">
+            <%= link_to "Add a review !", new_toy_review_path(@toy) %>
+          </div>
+        </ul>
+      </p>
+    </div>
+
+    <div class="ToyRating">
+      <%  if @toy.reviews.first == nil  %>
+      <h2> <%= "Be the first to put a review !" %> </h2>
+      <%  else  %>
+      <h2> What they tell about this toy: </h2>
+      <% @toy.reviews.each do |review| %>
+      <small>
+        <% count = 0 %>
+        <% 5.times do %>
+        <% if review.rating > count %>
+        <i class="fas fa-star"></i>
+        <% else %>
+        <i class="far fa-star"></i>
+        <% end %>
+        <% count += 1 %>
+        <% end %>
+      </small>
+      <p> <%= review.content %> </p>
+      <% end %>
+      <% end %>
+    </div>
+
+  </div>
+
 </div>

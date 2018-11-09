@@ -27,10 +27,11 @@ class BookingsController < ApplicationController
     authorize @booking
     if availability?
       if @booking.save!
-        redirect_to bookings_path
+        redirect_to user_path(current_user)
       else
         render :new
       end
+
     else
       render :show
     end
@@ -46,7 +47,7 @@ class BookingsController < ApplicationController
     # display the editable item fields
     if availability?
       if @booking.update(booking_params)
-        redirect_to bookings_path
+        redirect_to user_path(current_user)
       else
         render :edit
       end
@@ -57,7 +58,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    redirect_to bookings_path
+    redirect_to user_path(current_user)
   end
 
   private

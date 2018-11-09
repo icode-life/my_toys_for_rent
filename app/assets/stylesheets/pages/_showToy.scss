@@ -1,0 +1,31 @@
+.ToyInformations {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 100vh;
+  padding: 30px 0;
+}
+
+.ToyPhoto {
+  grid-row: 1/span 2;
+  grid-column: 1/span 2;
+  border-radius: 20%;
+  height: 300px;
+  width: 400px;
+  background-size: cover;
+}
+
+.ToyInfo {
+  grid-row: 1/span 2;
+  grid-column: 3/span 1;
+}
+
+.ToyRating {
+  grid-row: 3/span 2;
+  grid-column: 1/span 2;
+}
+
+.ToyLink {
+  grid-row: 3/span 1;
+  grid-column: 3/span 1;
+}

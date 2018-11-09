@@ -12,27 +12,30 @@
 
 /* Logo */
 .navbar-wagon-brand img {
-  height: 140px;
+  height: 50px;
+  margin: 20px;
 }
 
 /* User Avatar */
 .navbar-wagon .avatar {
-  height: 35px;
-  width: 35px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
+  margin: 20px;
 }
 
 /* Right section */
 .navbar-wagon-right {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 /* Basic navbar item */
 .navbar-wagon-item {
   cursor: pointer;
   padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Navbar link */
@@ -75,3 +78,5 @@
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
 }
+
+.show {display: block;}
