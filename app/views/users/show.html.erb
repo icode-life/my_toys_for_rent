@@ -42,10 +42,9 @@
                 <!-- iterate thru all the bookings of the current user -->
                 <% @user.bookings.each do |booking| %>
                     <li>
-                      <%= cl_image_tag booking.toy.photo, width: 50, height: 50, crop: :fill %>
-                      (<%= link_to booking.toy.name, toy_path(booking.toy) %>) ---
+                      <%= cl_image_tag booking.toy.photo, width: 50, height: 50, crop: :fill, radius: 20 %>
+                      <%= link_to booking.toy.name, toy_path(booking.toy) %> ---
                       Booked from: <%= booking.date_start %>  till:  <%= booking.date_end %>
-
                       <% if policy(booking).edit? %>
                           <%= link_to "Edit", edit_toy_booking_path(booking.toy, booking) %>
                       <% end %>
@@ -54,6 +53,7 @@
                       <% end %>
 
                     </li>
+                    <br>
                 <% end %>
               </ol>
 
@@ -65,11 +65,12 @@
                 <!-- iterate thru all the toys of the current user -->
                 <% @user.toys.each do |toy| %>
                     <li>
-                      <%= cl_image_tag toy.photo, width: 50, height: 50, crop: :fill %>
-                      (<%= link_to toy.name, toy_path(toy) %>)
+                      <%= cl_image_tag toy.photo, width: 50, height: 50, crop: :fill, radius: 20 %>
+                      <%= link_to toy.name, toy_path(toy) %>
 
                       <ul>
                         <!-- check if the toy has any bookings? -->
+                        <br>
                         <% if toy.bookings.count > 0 %>
                             <% toy.bookings.each do |booking| %>
                               <li>
@@ -83,6 +84,7 @@
                       </ul>
 
                     </li>
+                    <br>
                 <% end %>
               </ol>
 
@@ -103,7 +105,7 @@
                 </div>
               </div>
               <!-- add edit profile button -->
-              <%= link_to "Edit profile", edit_user_registration_path(current_user), class: "btn btn-success", "style": "margin-left: 27px;" %>
+              <%= link_to "Edit profile", edit_user_registration_path(current_user), class: "ButtonPinkNoFill", "style": "margin-left: 27px;" %>
             </div>
           </div>
         </div>
