@@ -44,10 +44,14 @@ class BookingsController < ApplicationController
   def update
     # view action: make a display of the updated item (show)
     # display the editable item fields
-    if @booking.update(booking_params)
-      redirect_to bookings_path
+    if availability?
+      if @booking.update(booking_params)
+        redirect_to bookings_path
+      else
+        render :edit
+      end
     else
-      render :edit
+      render :show
     end
   end
 
@@ -60,11 +64,11 @@ class BookingsController < ApplicationController
 
   def availability?
     dates = Booking.where(toy_id: @toy)
-    raise
     available = true
     dates.each do |existing_record|
-      if @booking[:date_start] >= existing_record[:date_end] && existing_record[:date_start] >= @booking[:date_end]
-      # (@booking[:date_start]..@booking[:date_end]).include?(existing_record[:date_start]..existing_record[:date_end])
+      # if @booking[:date_start] >= existing_record[:date_end] && existing_record[:date_start] >= @booking[:date_end]
+      if !((@booking[:date_start]..@booking[:date_end]).overlaps?(existing_record[:date_start]..existing_record[:date_end]))
+
       else
         available = false
       end
@@ -73,7 +77,7 @@ class BookingsController < ApplicationController
   end
 
   def convert_to(date_string_from_picker)
-    date_object = Date.strptime(date_string_from_picker, "%Y/%m/%d")
+    date_object = Date.strptime(date_string_from_picker, "%m/%d/%Y")
     date_object
   end
 

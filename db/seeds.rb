@@ -19,16 +19,18 @@ u5 = User.create(email: 'user5@example.com', password: '12345678', f_name: 'User
 
 t1 = Toy.new(name: 'GiJoe', category: 'Heroes', price: '123', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus venenatis bibendum. Donec risus ligula, sodales nec ultrices at, ultrices vel urna. Nunc scelerisque sit amet enim nec vehicula.')
 t1.owner = u1
-t1.save
+t1.save!
 
 t2 = Toy.create(name: 'Batman', category: 'Games', price: '321', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus venenatis bibendum. Donec risus ligula, sodales nec ultrices at, ultrices vel urna. Nunc scelerisque sit amet enim nec vehicula.')
 t2.owner = u2
-t2.save
+t2.save!
 
 b1 = Booking.create(date_start: Date.new(2001,2,3), date_end: Date.new(2001,2,5), user_id: 1, toy_id: 1)
-b1.save
+b1.save!
 
 b2 = Booking.create(date_start: Date.new(2002,3,4), date_end: Date.new(2003,5,5), user_id: 2, toy_id: 2)
-b2.save
+b2.save!
+
+puts "Done!"
 
 
