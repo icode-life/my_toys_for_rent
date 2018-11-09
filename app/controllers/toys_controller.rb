@@ -7,12 +7,12 @@ class ToysController < ApplicationController
 
   # Everyone that comes on the website can search for items
   def index
-    if params[:search].blank?
-      @toys = Toy.all
+    if params[:query].present?
+      sql_query = "name ILIKE :query OR description ILIKE :query"
+      @toys = Toy.where(sql_query, query: "%#{params[:query]}%")
     else
-      @toys = Toy.where("name ilike '%#{params[:search]}%'")
+      @toys = Toy.all
     end
-    # @toys = policy_scope(Toy)
   end
 
   # Everyone can have access to details about a specific item
