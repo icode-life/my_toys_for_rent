@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :find_booking, only: [:show, :edit, :update, :destroy]
+  before_action :availability?, only: [:create, :update]
   after_action :verify_policy_scoped, only: :index
 
   def index
@@ -17,15 +18,21 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new
     @toy = Toy.find(params[:toy_id])
+    @booking.date_start = convert_to(booking_params[:date_start])
+    @booking.date_end = convert_to(booking_params[:date_end])
     @booking.toy = @toy
     @booking.user = current_user
     authorize @booking
-    if @booking.save
-      redirect_to bookings_path
+    if availability?
+      if @booking.save!
+        redirect_to bookings_path
+      else
+        render :new
+      end
     else
-      render :new
+      render :show
     end
   end
 
@@ -50,6 +57,25 @@ class BookingsController < ApplicationController
   end
 
   private
+
+  def availability?
+    dates = Booking.where(toy_id: @toy)
+    raise
+    available = true
+    dates.each do |existing_record|
+      if @booking[:date_start] >= existing_record[:date_end] && existing_record[:date_start] >= @booking[:date_end]
+      # (@booking[:date_start]..@booking[:date_end]).include?(existing_record[:date_start]..existing_record[:date_end])
+      else
+        available = false
+      end
+      return available
+    end
+  end
+
+  def convert_to(date_string_from_picker)
+    date_object = Date.strptime(date_string_from_picker, "%Y/%m/%d")
+    date_object
+  end
 
   def find_booking
     @booking = Booking.find(params[:id])
