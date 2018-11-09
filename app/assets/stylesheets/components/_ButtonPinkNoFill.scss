@@ -1,0 +1,18 @@
+.ButtonPinkNoFill {
+  background-color: white;
+  font-size: 20px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  color: #F76C6C;
+  text-align: right;
+  border: 1px solid #F76C6C;
+  margin-top: 30px;
+}
+
+.ButtonPinkNoFill:hover {
+ background-color: white;
+ color: #FAABAB;
+ text-decoration: none;
+}

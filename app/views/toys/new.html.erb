@@ -1,20 +1,24 @@
-<div class="toy-form">
- <div class="col-xs-12 col-sm-4">
-  <%= simple_form_for (@toy) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.select(:category, options_for_select(
-    [["Babies", "Babies"],
-    ["Games", "Games"],
-    ["Babydoll", "Babydoll"],
-    ["Heroes", "Heroes"],
-    ["Puzzle", "Puzzle"]
-    ])) %>
-    <%= f.input :price %>
-    <%= f.input :photo %>
-    <%= f.input :photo_cache, as: :hidden %>
-    <%= f.button :submit, class: 'btn btn-primary' %>
-    <% end  %>
+<div class= "container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-md-4-offset">
+      <div class="ToyForm">
+        <%= simple_form_for (@toy) do |f| %>
+        <p> <%= f.input :name %> </p>
+        <p> <%= f.input :description %> </p>
+        <p> <%= f.select(:category, options_for_select(
+          [["Babies", "Babies"],
+          ["Games", "Games"],
+          ["Babydoll", "Babydoll"],
+          ["Heroes", "Heroes"],
+          ["Puzzle", "Puzzle"]
+          ])) %> </p>
+          <p> <%= f.input :price %> </p>
+        </p> <%= f.input :photo %> </p>
+        <%= f.input :photo_cache, as: :hidden %>
+        <%= f.button :submit, class: "ButtonPinkNoFill" %>
+        <% end  %>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -16,33 +16,34 @@
     </div>
 
     <div class="ToyLink">
-      <ul>
-        <div class="buttonMedium">
-          <%= link_to "Back to list", toys_path %>
-        </div>
+      <p>
+        <ul>
+          <div class="buttonMedium">
+            <%= link_to "Back to list", toys_path %>
+          </div>
 
-        <div class="buttonMedium">
-          <%= link_to "Edit", edit_toy_path(@toy) %>
-        </div>
+          <div class="buttonMedium">
+            <%= link_to "Edit", edit_toy_path(@toy) %>
+          </div>
 
-        <div class="buttonMedium">
-          <%= link_to "Remove", toy_path(@toy), method: :delete, data:{confirm: "Are you sure?" } %>
-        </div>
+          <div class="buttonMedium">
+            <%= link_to "Remove", toy_path(@toy), method: :delete, data:{confirm: "Are you sure?" } %>
+          </div>
 
-        <div class="buttonMedium">
-          <%= link_to "Book this toy !", new_toy_booking_path(@toy) %>
-        </div>
+          <div class="buttonMedium">
+            <%= link_to "Book this toy !", new_toy_booking_path(@toy) %>
+          </div>
 
-        <div class="buttonMedium">
-          <%= link_to "Add a review !", new_toy_review_path(@toy) %>
-        </div>
-
-      </ul>
+          <div class="buttonMedium">
+            <%= link_to "Add a review !", new_toy_review_path(@toy) %>
+          </div>
+        </ul>
+      </p>
     </div>
 
     <div class="ToyRating">
       <%  if @toy.reviews.first == nil  %>
-      <h2> <%=   "There are no reviews"  %> </h2>
+      <h2> <%= "Be the first to put a review !" %> </h2>
       <%  else  %>
       <h2> What they tell about this toy: </h2>
       <% @toy.reviews.each do |review| %>
