@@ -20,7 +20,7 @@
               <%= link_to b.toy.name, toy_booking_path(b.toy, b) %>
             </li>
             <% if policy(b).edit? %>
-                <%= link_to "Edit", edit_toy_booking_path(b.toy, b), class: "btn btn-success" %>
+                <%= link_to "Edit", edit_toy_booking_path(b.toy, b), class: "ButtonPinkNoFill" %>
             <% end %>
             <% if policy(b).destroy? %>
               <%= link_to "Delete", toy_booking_path(b.toy, b), method: :delete, data:{confirm: "Are you sure?" }, class: "btn btn-danger" %>

@@ -1,9 +1,16 @@
-<p> Your review of <%= @toy.name %> : </p>
+<div class= "container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-md-4-offset">
+      <p></p>
+      <p> Your review of <%= @toy.name %> : </p>
 
-<%= simple_form_for [@toy, @review] do |f| %>
-<%= f.input :content %>
-<%= f.input :rating, collection: 0..5 %>
-<%= f.submit "Add my review", class: "buttonMedium" %>
-<% end %>
-
-<%= link_to "Back to all the toys", toys_path %>
+      <%= simple_form_for [@toy, @review] do |f| %>
+      <%= f.input :content %>
+      <%= f.input :rating, collection: 0..5 %>
+      <%= f.submit "Add my review", class: "ButtonPinkNoFill" %>
+      <% end %>
+      <p></p>
+      <%= link_to "Back to all the toys", toys_path %>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-offset-1 col-sm-10">
-        <div class="card hovercard">
+        <div class="card-user hovercard">
             <div class="card-background">
                 <%= cl_image_tag @user.photo, class: "card-bkimg" %>
                 <!-- http://lorempixel.com/850/280/people/9/ -->
@@ -42,10 +42,9 @@
                 <!-- iterate thru all the bookings of the current user -->
                 <% @user.bookings.each do |booking| %>
                     <li>
-                      <%= cl_image_tag booking.toy.photo, width: 50, height: 50, crop: :fill %>
-                      (<%= link_to booking.toy.name, toy_path(booking.toy) %>) ---
+                      <%= cl_image_tag booking.toy.photo, width: 50, height: 50, crop: :fill, radius: 20 %>
+                      <%= link_to booking.toy.name, toy_path(booking.toy) %> ---
                       Booked from: <%= booking.date_start %>  till:  <%= booking.date_end %>
-
                       <% if policy(booking).edit? %>
                           <%= link_to "Edit", edit_toy_booking_path(booking.toy, booking) %>
                       <% end %>
@@ -54,6 +53,7 @@
                       <% end %>
 
                     </li>
+                    <br>
                 <% end %>
               </ol>
 
@@ -65,11 +65,12 @@
                 <!-- iterate thru all the toys of the current user -->
                 <% @user.toys.each do |toy| %>
                     <li>
-                      <%= cl_image_tag toy.photo, width: 50, height: 50, crop: :fill %>
-                      (<%= link_to toy.name, toy_path(toy) %>)
+                      <%= cl_image_tag toy.photo, width: 50, height: 50, crop: :fill, radius: 20 %>
+                      <%= link_to toy.name, toy_path(toy) %>
 
                       <ul>
                         <!-- check if the toy has any bookings? -->
+                        <br>
                         <% if toy.bookings.count > 0 %>
                             <% toy.bookings.each do |booking| %>
                               <li>
@@ -83,17 +84,28 @@
                       </ul>
 
                     </li>
+                    <br>
                 <% end %>
               </ol>
 
             </div>
             <div class="tab-pane fade in" id="tab3">
-              <p><strong>First name:</strong> <%= current_user.f_name %></p>
-              <p><strong>Last name:</strong> <%= current_user.l_name %></p>
-              <p><strong>Email:</strong> <%= current_user.email %></p>
-              <p><strong>Address:</strong> <%= current_user.address %></p>
+              <div style="display: flex; margin: 15px;">
+                <div style="padding: 15px;">
+                  <p><strong>First name:</strong></p>
+                  <p><strong>Email:</strong></p>
+                  <p><strong>Last name:</strong></p>
+                  <p><strong>Address:</strong></p>
+                </div>
+                <div style="padding: 15px;">
+                  <p><%= current_user.f_name %></p>
+                  <p><%= current_user.l_name %></p>
+                  <p><%= current_user.email %></p>
+                  <p><%= current_user.address %></p>
+                </div>
+              </div>
               <!-- add edit profile button -->
-              <%= link_to "Edit", edit_user_registration_path(current_user) %>
+              <%= link_to "Edit profile", edit_user_registration_path(current_user), class: "ButtonPinkNoFill", "style": "margin-left: 27px;" %>
             </div>
           </div>
         </div>
