@@ -33,6 +33,7 @@ a {
 h1 {
   font-family: $open-sans;
   font-weight: 300;
+}
 
 .card {
   height: 175px;
@@ -151,7 +152,7 @@ h1 {
   .wrapper {
     filter: grayscale(10%);
     &:hover {
-      opacity: 0.7;
+      opacity: 0.8;
       .menu-content {
         span {
           transform: translate(-50%, -10px);
@@ -226,6 +227,10 @@ h1 {
   align-items: center;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 .card-link {
   position: absolute;
   top: 0;
@@ -236,4 +241,7 @@ h1 {
   background: black;
   opacity: 0;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
