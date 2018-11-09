@@ -33,7 +33,7 @@ class BookingsController < ApplicationController
       end
 
     else
-      render :show
+      render :new
     end
   end
 
@@ -69,7 +69,7 @@ class BookingsController < ApplicationController
     dates.each do |existing_record|
       # if @booking[:date_start] >= existing_record[:date_end] && existing_record[:date_start] >= @booking[:date_end]
       if !((@booking[:date_start]..@booking[:date_end]).overlaps?(existing_record[:date_start]..existing_record[:date_end]))
-
+      # raise
       else
         available = false
       end
