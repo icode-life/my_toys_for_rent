@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-sm-4 text-center">
-    <%= cl_image_tag @toy.photo, height: 200, width: 300, crop: :fill %>
+    <%= cl_image_tag @toy.photo, height: 150, width: 230, crop: :fill %>
   </div>
   <div class="col-sm-4">
     <h4>category:</h4>
@@ -18,14 +18,22 @@
   </div>
 </div>
 
+<!-- date picker input.      <input type="text" data-provide='datepicker' >
+ -->
+ <hr>
 <div class="row">
-  <div class="col-sm-offset-2 col-sm-4 text-center">
+  <div class="col-md-offset-2 col-md-10 text-center">
     <%= simple_form_for [@toy, @booking] do |f| %>
-      <%= f.input :date_start %>
+      <div class="col-md-5">
+      <%= f.text_field :date_start, data: {provide: "datepicker"}  %>      <hr>
+      </div>
+      <div class="col-md-5">
+      <%= f.text_field :date_end, data: {provide: "datepicker"}  %>
+      </div>
   </div>
-  <div class="col-sm-4 text-center">
-      <%= f.input :date_end %>
-  </div>
+      <hr>
+
+
 </div>
 <div class="row">
   <div class="col-sm-offset-4 col-sm-4 text-center">
@@ -34,3 +42,4 @@
     <% end %>
   </div>
 </div>
+
